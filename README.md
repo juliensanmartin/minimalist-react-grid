@@ -1,49 +1,57 @@
-# React component boilerplate
+A minimalist responsive grid component for React.
 
-This is a simple boilerplate project for building a react component package for npm. It is suitable for building any type of UI component or library (like for example a dropdown menu or a toggle-switch). The project contains a correctly transpiled folder for the component library (easy to get wrong) as well as a demo page for showcasing it. The demo can easily be uploaded to _GitHub Pages_. This boilerplate project is meant to be minimal and easy to understand. Linting, testing, prettier etc have been purposefully left out. It does not include a UMD build, as those aren't really used anymore.
+<img src="https://camo.githubusercontent.com/7b82df5ece8794631d7b004a6fd1d9fe32a336b6/68747470733a2f2f64337676366c703535716a6171632e636c6f756466726f6e742e6e65742f6974656d732f334132783052335a3245337130523069304531692f53637265656e2532305265636f7264696e67253230323031362d31312d3234253230617425323031312e3433253230414d2e6769663f582d436c6f75644170702d56697369746f722d49643d643661386464343439306336316166646261386130613230383232373361613126763d3631613139333333" height="32px" />
 
-If you are new to building React components for npm you should check out [this guide](https://medium.com/@markus.s.englund/a-guide-to-building-a-react-component-for-npm-68f03b314753).
+See [usage and examples](http://aaronshaf.github.io/react-toggle/).
 
-## How it is structured
+## Props
 
-The source code has two separate parts – the library and the documentation (demo) page. Both are written in ES6 and JSX, and therefore have to be transpiled by Babel but in different ways.
+The component takes the following props.
 
-### Component library transpilation
+| Prop              | Type       | Description |
+|-------------------|------------|-------------|
+| `checked`         | _boolean_  | If `true`, the toggle is checked. If `false`, the toggle is unchecked. Use this if you want to treat the toggle as a controlled component |
+| `defaultChecked`  | _boolean_  | If `true` on initial render, the toggle is checked. If `false` on initial render, the toggle is unchecked. Use this if you want to treat the toggle as an uncontrolled component |
+| `onChange`        | _function_ | Callback function to invoke when the user clicks on the toggle. The function signature should be the following: `function(e) { }`. To get the current checked status from the event, use `e.target.checked`. |
+| `onFocus`         | _function_ | Callback function to invoke when field has focus. The function signature should be the following: `function(e) { }` |
+| `onBlur`          | _function_ | Callback function to invoke when field loses focus. The function signature should be the following: `function(e) { }` |
+| `name`            | _string_   | The value of the `name` attribute of the wrapped \<input\> element |
+| `value`           | _string_   | The value of the `value` attribute of the wrapped \<input\> element |
+| `id`              | _string_   | The value of the `id` attribute of the wrapped \<input\> element |
+| `icons`        | _object_  | If `false`, no icons are displayed. You may also pass custom icon components in `icons={{{checked: <CheckedIcon />, unchecked: <UncheckedIcon />}}` |
+| `aria-labelledby` | _string_   | The value of the `aria-labelledby` attribute of the wrapped \<input\> element |
+| `aria-label`      | _string_   | The value of the `aria-label` attribute of the wrapped \<input\> element |
+| `disabled`        | _boolean_  | If `true`, the toggle is disabled. If `false`, the toggle is enabled |
 
-The library source code, which is located in `src/lib`, is transpiled with Babel but is _not_ bundled with Webpack. Bundling is completely unnecessary, since the developer who will in the end use your library for their application will bundle their entire codebase, which includes your library. More importantly, if your library has any dependencies, bundling them together with your code would be a disaster since it could cause duplication and therefore larger final bundle size. The components still have to be transpiled since many developers have Webpack configured to not transpile their node_modules folder. Some may not be using JSX or ES6 at all, and would therefore be unable to transpile your component.
+## Installation
 
-### Demo app transpilation
+```bash
+npm install minimalist-react-grid
+```
 
-The demo app source code lives inside the `src/docs` folder. It is transpiled, bundled and minified by Webpack and Babel into the `docs` folder in the root directory (by running `npm run docs:prod`). This is a completely normal react app with minimal configuration that imports the component library. It has two purposes: 1. To have a way of inspecting your components while you develop the library, and 2. As a demo to showcase to people who try to figure out what your library does.
+## Usage
 
-The reason that the folder doesn't have a logical name like `demo` is that GitHub Pages requires it to be called `docs` for some reason...
+If you want the default styling, include the component's [CSS](./style.css) with
 
-## Getting started
+```javascript
+import "react-toggle/style.css" // for ES6 modules
+// or
+require("react-toggle/style.css") // for CommonJS
+```
 
-Follow these steps to get started developing your own react component:
+## Development
 
-* `git clone https://github.com/yogaboll/react-npm-component-starter.git`
-* `npm install`
-* `npm run lib:watch` - Transpile the `src/lib` folder in watch mode
-* `npm run docs` - start a development server with the demo website based on the `src/docs` folder.
-* Go to http://127.0.0.1:8000 to see the demo in action. Whenever you change the code in either src/lib or src/docs, the page will automatically update.
+```javascript
+npm install
+npm run dev
+```
 
-Remember to reset the git history:
+## Build
 
-* `rm -rf .git`
-* `git init`
-* `git add .`
-* `git commit -m "setup project"`
+```javascript
+npm run build
+```
 
-When you have completed development and want to publish to npm:
+## License
 
-* Make sure the "name" field in the package.json file is correct (the npm package will get this name).
-* `npm publish`
-* Go to npmjs.com/package/[YOUR COMPONENT NAME]/ to confirm that it has been published.
-
-Host demo on GitHub Pages:
-
-* `npm run docs:prod` - Make a production bundle of the demo app.
-* Commit your changes to git and push to your GitHub repository.
-* On your GitHub repo page, click the **settings** tab and scroll down to the **GitHub Pages** heading. Pick `master branch /docs folder` in the **source** dropdown, And BOOM, your demo page is already live on the internet for free.
-* Note: Sometimes it might take about an hour for the page to actually start hosting. Adding /index.html after the url works instantly for whatever reason.
+MIT
