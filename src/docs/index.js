@@ -5,7 +5,8 @@ import styled from "styled-components";
 import "./styles.css";
 
 const simple = {
-  backgroundColor: '#335EFF',
+  backgroundColor: '#00A451',
+  color: '#381D2A',
   width: '100%',
   height: '50px',
   display: 'flex',
@@ -14,21 +15,21 @@ const simple = {
 };
 
 const OrangeDiv = styled(Grid)`
-  background-color: #FFC433;
+  background-color: #3E3C72;
 `;
 
 const RedGrid = styled(Grid)`
-  background-color: red;
+  background-color: #ED3237;
 `;
 
 const GreenGrid = styled(Grid)`
-  background-color: green;
+  background-color: #F4D23A;
 `;
 
 function Demo() {
   return (
     <div>
-      <h1>Demo with examples of the component</h1>
+      <h1>Demo Nested Grids</h1>
       <OrangeDiv spacing={16}>
         <RedGrid spacing={16} size={8}>
           <div style={simple} size={3}>

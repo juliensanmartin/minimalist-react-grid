@@ -10,18 +10,13 @@ The component takes the following props.
 
 | Prop              | Type       | Description |
 |-------------------|------------|-------------|
-| `checked`         | _boolean_  | If `true`, the toggle is checked. If `false`, the toggle is unchecked. Use this if you want to treat the toggle as a controlled component |
-| `defaultChecked`  | _boolean_  | If `true` on initial render, the toggle is checked. If `false` on initial render, the toggle is unchecked. Use this if you want to treat the toggle as an uncontrolled component |
-| `onChange`        | _function_ | Callback function to invoke when the user clicks on the toggle. The function signature should be the following: `function(e) { }`. To get the current checked status from the event, use `e.target.checked`. |
-| `onFocus`         | _function_ | Callback function to invoke when field has focus. The function signature should be the following: `function(e) { }` |
-| `onBlur`          | _function_ | Callback function to invoke when field loses focus. The function signature should be the following: `function(e) { }` |
-| `name`            | _string_   | The value of the `name` attribute of the wrapped \<input\> element |
-| `value`           | _string_   | The value of the `value` attribute of the wrapped \<input\> element |
-| `id`              | _string_   | The value of the `id` attribute of the wrapped \<input\> element |
-| `icons`        | _object_  | If `false`, no icons are displayed. You may also pass custom icon components in `icons={{{checked: <CheckedIcon />, unchecked: <UncheckedIcon />}}` |
-| `aria-labelledby` | _string_   | The value of the `aria-labelledby` attribute of the wrapped \<input\> element |
-| `aria-label`      | _string_   | The value of the `aria-label` attribute of the wrapped \<input\> element |
-| `disabled`        | _boolean_  | If `true`, the toggle is disabled. If `false`, the toggle is enabled |
+| `spacing`         | _number_   | Value one of : [0, 8, 16, 24, 40], by default 0. Define the spacing between children inside the grid |
+
+The children components takes the following props.
+
+| Prop              | Type       | Description |
+|-------------------|------------|-------------|
+| `size`            | _number_   | Value between 1 and 12, by default 1. Define the space taken by the children component inside the grid |
 
 ## Installation
 
@@ -31,12 +26,53 @@ npm install minimalist-react-grid
 
 ## Usage
 
-If you want the default styling, include the component's [CSS](./style.css) with
+### Import the component
 
 ```javascript
-import "react-toggle/style.css" // for ES6 modules
-// or
-require("react-toggle/style.css") // for CommonJS
+import Grid from 'minimalist-react-grid'
+```
+
+### Wrap the component around what you need in order to create a responsive layout
+
+The grid works like a 12 cells row table and will dispatch the children into the grid depending on what space/size they need.
+
+```javascript
+// Define a Grid with 3 children with a 8px spacing between each of the children.
+<Grid spacing={8}>
+  // Uses half the width of the grid. 6 cells left on this line
+  <FirstComponent size={6}>children 1</FirstComponent> 
+
+  // Uses 8 cells. Because the previous line only has 6 cells left this component will
+  // be displayed in the next line and takes 8 cells. It remains 4 cells on the second line. 
+  <SecondComponent size ={8}>children 2</SecondComponent>
+  
+  // Uses 2 cells. Because the second line still have 4 cells, it's enough to displays the third component
+  // on the second line. it remains still 2 cells on this line
+  <ThirdComponent size={2}>children 3</ThirdComponent>
+</Grid>
+```
+
+### Nested Grid
+
+As the grid takes any component as children, you could pass another grid to it to start building more complex responsiv layout
+
+```javascript
+// Define a Grid with 2 children with a 8px spacing between each of the children.
+<Grid spacing={8}>
+  // Define a Grid with 2 children with a 16px spacing between each of the children.
+  // Uses 8 cells on the first line. It remains 4 cells on this line.
+  <Grid spacing={16} size={8}>
+    // Uses half the width of the grid. 6 cells left on this line
+    <FirstComponent size={6}>children 1</FirstComponent> 
+
+    // Uses 8 cells. Because the previous line only has 6 cells left this component will
+    // be displayed in the next line and takes 8 cells. It remains 4 cells on the second line. 
+    <SecondComponent size ={8}>children 2</SecondComponent>
+  </Grid>  
+  
+  // Uses 2 cells. Because the first children (Grid) uses 8 cells, there is still 4 cells available which is enough to displays the // third component on the second line. it remains still 2 cells on this line.
+  <ThirdComponent size={2}>children 3</ThirdComponent>
+</Grid>
 ```
 
 ## Development
