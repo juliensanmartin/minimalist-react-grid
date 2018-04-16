@@ -2,6 +2,10 @@ A minimalist responsive grid component for React.
 
 See [usage and examples](https://juliensanmartin.github.io/minimalist-react-grid/).
 
+## Todos (WIP)
+#### Tests
+#### Improve Docs
+
 ## Props
 
 The component takes the following props.
