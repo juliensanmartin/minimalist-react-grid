@@ -2,3 +2,38 @@ body {
   background: #eee;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00A451;
+  color: #381D2A;
+}
+
+.card {
+  background-color: #00A451;
+  color: #381D2A;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blue {
+  background-color: #3E3C72;
+}
+
+.red {
+  background-color: #ED3237;
+}
+
+.yellow {
+  background-color: #F4D23A;
+}
+
+.code {
+  font-family: source-code-pro,Menlo,Consolas,Monaco,Andale Mono,Courier New,monospace;
+}

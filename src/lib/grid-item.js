@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styles from './style.css';
+import classnames from 'classnames';
 
 const SPACING = [0, 8, 16, 24, 40];
 const GRID_SIZES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -38,27 +39,23 @@ export default class GridItem extends PureComponent {
   render() {
     const { spacing, size, children, className, id } = this.props;
 
+    const gridItemClass = classnames(className, styles.gridItem);
+
+    const style = {
+      padding: `${spacing / 2}px`,
+      maxWidth: `${size * 100 / 12}%`,
+      flexBasis: `${size * 100 / 12}%`
+    };
+
     return (
-      <GridItemWrapper
+      <div
         spacing={spacing}
         size={size > 12 ? 12 : size}
-        className={className}
+        className={gridItemClass}
+        style={style}
       >
         {children}
-      </GridItemWrapper>
+      </div>
     );
   }
 }
-
-const GridItemWrapper = styled.div`
-  flex: 0 0 auto;
-  margin: 0;
-  box-sizing: border-box;
-  display: block;
-  padding: ${({ spacing }) => `${spacing / 2}px`};
-  max-width: ${({ size }) => `${size * 100 / 12}%`};
-  flex-basis: ${({ size }) => `${size * 100 / 12}%`};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;

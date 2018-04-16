@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styles from './style.css';
+import classnames from 'classnames';
 import GridItem from './grid-item';
 
 const SPACING = [0, 8, 16, 24, 40];
@@ -39,10 +40,12 @@ export default class Grid extends PureComponent {
   render() {
     const { spacing, children, className } = this.props;
 
+    const gridClass = classnames(className, styles.grid);
+
     return (
-      <GridContainer spacing={spacing} className={className}>
+      <div spacing={spacing} className={gridClass}>
         {this._renderChildren()}
-      </GridContainer>
+      </div>
     );
   }
 
@@ -56,12 +59,4 @@ export default class Grid extends PureComponent {
     });
   };
 }
-
-const GridContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-`;
 
