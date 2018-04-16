@@ -32,7 +32,7 @@
     "webpack-dev-server": "^2.11.0"
   },
   "author": "Julien Sanmartin <sanmartinjulien@gmail.com>",
-  "homepage": "https://github.com/yogaboll/react-npm-component-starter",
+  "homepage": "https://github.com/juliensanmartin/minimalist-react-grid",
   "repository": {
     "type": "git",
     "url": "git@github.com:juliensanmartin/minimalist-react-grid.git"
