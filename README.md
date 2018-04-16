@@ -1,7 +1,5 @@
 A minimalist responsive grid component for React.
 
-<img src="" height="32px" />
-
 See [usage and examples](https://juliensanmartin.github.io/minimalist-react-grid/).
 
 ## Props
