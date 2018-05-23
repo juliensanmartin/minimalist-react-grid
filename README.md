@@ -1,5 +1,9 @@
 A minimalist responsive grid component for React.
 
+<video width="320" height="240" controls>
+  <source src="assets/minimalist-react-grid.mov" type="video/mp4">
+</video>
+
 See [usage and examples](https://juliensanmartin.github.io/minimalist-react-grid/).
 
 ## Todos (WIP)
